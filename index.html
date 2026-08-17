@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IVÁN · Prime Steakhouse</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <button class="brand" onclick="showView('menu')">
+        IVÁN
+        <small>Prime Steakhouse</small>
+      </button>
+
+      <button class="cart-button" onclick="showView('cart')">
+        Tu orden <span id="counter">0</span>
+      </button>
+    </header>
+
+    <section id="menu" class="view active">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">Prime Steakhouse · México</span>
+          <h1>El arte del<br><i>fuego.</i></h1>
+          <p>
+            Cortes premium, brasas de encino y una experiencia creada para
+            celebrar a lo grande.
+          </p>
+
+          <button class="primary" onclick="document.getElementById('carta').scrollIntoView({behavior:'smooth'})">
+            Ver cortes <span>↓</span>
+          </button>
+        </div>
+
+        <div class="hero-image">
+          <div class="hero-note">Cortes seleccionados. Fuego real.</div>
+        </div>
+      </div>
+
+      <section id="carta" class="menu-section">
+        <div class="menu-title">
+          <div>
+            <span class="eyebrow">Nuestra selección</span>
+            <h2>La carta</h2>
+          </div>
+
+          <div id="categories" class="categories"></div>
+        </div>
+
+        <div id="products" class="products"></div>
+      </section>
+    </section>
+
+    <section id="detail" class="view">
+      <button class="back" onclick="showView('menu')">
+        ← Volver a la carta
+      </button>
+
+      <div class="detail">
+        <div id="detailImg" class="detail-img"></div>
+
+        <div class="detail-copy">
+          <span id="detailCategory" class="eyebrow"></span>
+          <h1 id="detailName"></h1>
+          <p id="detailDescription" class="description"></p>
+
+          <div class="ingredients">
+            <strong>Incluye</strong>
+            <span id="detailIngredients"></span>
+          </div>
+
+          <div id="detailPrice" class="detail-price"></div>
+
+          <button class="add-button" onclick="addCurrentProduct()">
+            <span>Agregar a mi orden</span>
+            <span id="addPrice"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="cart" class="view">
+      <div class="cart-page">
+        <button class="back" onclick="showView('menu')">
+          ← Seguir viendo la carta
+        </button>
+
+        <h1>Tu orden</h1>
+        <div id="cartContent"></div>
+      </div>
+    </section>
+
+    <section id="checkout" class="view">
+      <div class="checkout">
+        <button class="back" onclick="showView('cart')">
+          ← Volver a tu orden
+        </button>
+
+        <h1>Un último detalle</h1>
+        <p>Indícanos tu nombre y mesa para llevar tu orden al lugar correcto.</p>
+
+        <form class="form" onsubmit="placeOrder(event)">
+          <label>
+            Nombre completo
+            <input id="customerName" required autocomplete="name" placeholder="Escribe tu nombre">
+          </label>
+
+          <label>
+            Número de mesa
+            <input id="tableNumber" required inputmode="numeric" pattern="[0-9]+" placeholder="Ej. 14">
+          </label>
+
+          <button class="primary full" type="submit">
+            Enviar orden por WhatsApp
+          </button>
+
+          <p class="small-note">
+            Se abrirá WhatsApp con la orden lista para enviar al equipo de cocina.
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <section id="confirmation" class="view">
+      <div class="confirmation">
+        <div class="check">✓</div>
+        <h1>Orden hecha</h1>
+        <p>Tu corte ya está en camino a la parrilla.</p>
+        <p id="confirmedOrder" class="order-id"></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
